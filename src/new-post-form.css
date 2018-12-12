@@ -1,0 +1,21 @@
+form{
+  width:50%;
+  border:2px black solid;
+  margin:20px auto;
+}
+
+form h2{
+  text-align:center;
+}
+
+.buttons{
+  width:100px;
+  margin:10px auto;
+}
+
+fieldset{
+  border:none;
+  width:90%;
+  margin:auto;
+  text-align:center;
+}

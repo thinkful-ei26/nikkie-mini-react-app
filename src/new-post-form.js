@@ -1,5 +1,6 @@
 import React from 'react';
 
+import './new-post-form.css'
 
 export default class NewPostForm extends React.Component{
   constructor(props) {
@@ -38,7 +39,9 @@ export default class NewPostForm extends React.Component{
   render(){
     return(
       <form className="new-post-form" onSubmit={e=>this.handleSubmit(e)}>
-        <input 
+      <h2>Create A New Post</h2>
+      <fieldset>
+      <input 
           type = "text" 
           name="title" 
           required
@@ -59,8 +62,12 @@ export default class NewPostForm extends React.Component{
           <option value="Book">Book</option>
           <option value="Show">Show</option>
         </select>
-        <button type = "submit">Save</button>
-        <button type = "button" onClick = {()=>this.props.onCancel()} >Cancel</button>
+      </fieldset>
+        
+        <div className = "buttons">
+          <button type = "submit">Save</button>
+          <button type = "button" onClick = {()=>this.props.onCancel()} >Cancel</button>
+        </div>
       </form>
     );
   }

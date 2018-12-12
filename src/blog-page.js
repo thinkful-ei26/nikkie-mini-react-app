@@ -4,14 +4,16 @@ import NewPostForm from './new-post-form'
 import SearchBar from './searchbar'
 import FilterCategory from './filter-category'
 
+import './blog-page.css'
+
 export default class BlogPage extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
           posts:[
-            {title: 'Poison Study', content: 'Great read', category: 'Book'},
-            {title: 'Handmaids Tale', content: 'Crazy show', category: 'Show'},
+            {title: 'Poison Study', content: 'Great read', category: 'Book', comments: ['LOL', 'HAHAHAHA']},
+            {title: 'Handmaids Tale', content: 'Crazy show', category: 'Show', comments: ['Agreed!']},
           ],
           adding: false,
           searchTerm: '',
@@ -57,18 +59,25 @@ export default class BlogPage extends React.Component {
       console.log('THE STATE IS NOW', this.state);
         if(this.state.adding){
           return(
-             <NewPostForm onSave ={post=>this.savePost(post)} onCancel={()=>this.addingPost(false)}/>
+            <div className = "blog-page">
+              <div className = "actions-header">
+                <button onClick = {()=>this.addingPost(true)}>Add A New Post</button>
+                <SearchBar onChange = {e => this.searching(e)} searchTerm = {this.state.searchTerm}/>
+                <FilterCategory filterChange = {e => this.filterChange(e)}/>              
+              </div>
+              <NewPostForm onSave ={post=>this.savePost(post)} onCancel={()=>this.addingPost(false)}/>
+              <PostSection posts={posts}/>
+            </div>
           );
         }
         else{
           return (
             <div className = "blog-page">
-              <button onClick = {()=>this.addingPost(true)}>Add A New Post</button>
-              <SearchBar onChange = {e => this.searching(e)} searchTerm = {this.state.searchTerm}/>
-              <FilterCategory filterChange = {e => this.filterChange(e)}/>
-              {/* if(this.state.adding){
-                  <NewPostForm onSave ={post=>this.savePost(post)} onCancel={()=>this.addingPost(false)}/>
-              } */}
+              <div className = "actions-header">
+                <button onClick = {()=>this.addingPost(true)}>Add A New Post</button>
+                <SearchBar onChange = {e => this.searching(e)} searchTerm = {this.state.searchTerm}/>
+                <FilterCategory filterChange = {e => this.filterChange(e)}/>              
+              </div>
               <PostSection posts={posts}/>
             </div>
           );
@@ -76,4 +85,5 @@ export default class BlogPage extends React.Component {
     }
 }
 
-// QUESTION: ideally want it work the way I have in comment - how can I do this?
+// QUESTION: I'm repeating code but I don't know how to fix it.
+//How would I make actions-header it's own component?

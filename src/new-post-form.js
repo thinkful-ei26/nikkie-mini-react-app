@@ -6,30 +6,13 @@ export default class NewPostForm extends React.Component{
   constructor(props) {
     super(props);
 
-    this.state = {
+    this.state={
       title: '',
       content: '',
       category: '',
+      comments:'',
     };
-}
-
-  handleTitleChange(e){
-    this.setState({
-      title: e.target.value
-    })
-  }
-
-  handleContentChange(e){
-    this.setState({
-      content: e.target.value
-    })
-  }
-
-  handleCategoryChange(e){
-    this.setState({
-      category: e.target.value
-    })
-  }
+  } 
 
   handleSubmit(e){
     e.preventDefault();
@@ -42,31 +25,29 @@ export default class NewPostForm extends React.Component{
       <h2>Create A New Post</h2>
       <fieldset>
       <input 
-          type = "text" 
+          type="text" 
           name="title" 
           required
           placeholder="Title" 
-          value={this.state.title} 
-          onChange={e=>this.handleTitleChange(e)}>
+          onChange={e=>this.setState({title:e.target.value})}>
         </input>
         <input 
-          type = "text" 
+          type="text" 
           name="content" 
           required
           placeholder="content" 
-          value={this.state.content} 
-          onChange={e=>this.handleContentChange(e)}>
+          onChange={e=>this.setState({content:e.target.value})}>
         </input>
-        <select onChange={e=>this.handleCategoryChange(e)} required>
+        <select onChange={e=>this.setState({category:e.target.value})} required>
           <option value="" selected disabled>Select A Category</option>
           <option value="Book">Book</option>
           <option value="Show">Show</option>
         </select>
       </fieldset>
         
-        <div className = "buttons">
-          <button type = "submit">Save</button>
-          <button type = "button" onClick = {()=>this.props.onCancel()} >Cancel</button>
+        <div className="buttons">
+          <button type="submit">Save</button>
+          <button type="button" onClick={()=>this.props.onCancel()} >Cancel</button>
         </div>
       </form>
     );
@@ -74,4 +55,6 @@ export default class NewPostForm extends React.Component{
 
 }
 
-//I feel like the way I'm grabbing inputs is overkill. Should I be doing it with ref? Less fns? Do I have too much state?
+//no spaces around equal
+
+//you cant set state in render, BUT if its after an arrow fn its not really in render

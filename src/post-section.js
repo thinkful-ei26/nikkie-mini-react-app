@@ -2,18 +2,17 @@ import React from 'react';
 import Post from './post'
 
 
-export default function PostSection(props) {
-  let posts =[];
+export default class PostSection extends React.Component {
 
-  for(let i = 0; i < props.posts.length; i++){
-    posts.push(
-      <Post post={props.posts[i]} key = {i} />
-    )
+  handleNewComment(newcomment, index){
+    this.props.handleNewComment(newcomment, index)
   }
-  
-  return (
-    <div className = "posts-section">
-      {posts}
-    </div>
-  );
+
+  render(){
+    return (
+      <div className="posts-section">
+        {this.props.posts.map((post,index)=> <Post handleNewComment={(newcomment,index)=>this.handleNewComment(newcomment, index)} post={post} key={index} index={index} />)}
+      </div>
+    );
+  }
 }

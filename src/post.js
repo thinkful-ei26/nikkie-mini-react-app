@@ -11,10 +11,10 @@ export default class Post extends React.Component {
   
   render(){
     return (
-      <div className="post" key={this.props.key}>
-        <h3 className='left'>{this.props.post.title}</h3>
-        <h3 className='right'>{this.props.post.category}</h3>
-        <p>{this.props.post.content}</p>
+      <div className="post">
+          <h3 className='left'>{this.props.post.title}</h3>
+          <h3 className='right'>{this.props.post.category}</h3>
+          <p>{this.props.post.content}</p>
         <CommentSection handleNewComment={newcomment=>this.handleNewComment(newcomment)} comments={this.props.post.comments}/>
       </div>
     );

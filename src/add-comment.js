@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './add-comment.css'
+
 export default class AddComment extends React.Component {
 
   handleSubmit(e){
@@ -13,13 +15,15 @@ export default class AddComment extends React.Component {
 
   render(){
     return (
-      <form onSubmit={e=>this.handleSubmit(e)}>
-        <textarea
+      <form className = "add-comment-form" onSubmit={e=>this.handleSubmit(e)}>
+        <input
+          className = "add-comment-input"
+          name="add-comment"
           type="text" 
           placeholder="Enter Your Comment Here" 
           // value={props.searchTerm}
           ref={input => this.textInput=input}>
-        </textarea>
+        </input>
         <button type="submut">Comment</button>
       </form>  
     );

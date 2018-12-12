@@ -41,6 +41,7 @@ export default class NewPostForm extends React.Component{
         <input 
           type = "text" 
           name="title" 
+          required
           placeholder="Title" 
           value={this.state.title} 
           onChange={e=>this.handleTitleChange(e)}>
@@ -48,14 +49,15 @@ export default class NewPostForm extends React.Component{
         <input 
           type = "text" 
           name="content" 
+          required
           placeholder="content" 
           value={this.state.content} 
           onChange={e=>this.handleContentChange(e)}>
         </input>
-        <select onChange={e=>this.handleCategoryChange(e)}>>
+        <select onChange={e=>this.handleCategoryChange(e)} required>
           <option value="" selected disabled>Select A Category</option>
-          <option value="TryIt">TryIt</option>
-          <option value="DoneIt">DoneIt</option>
+          <option value="Book">Book</option>
+          <option value="Show">Show</option>
         </select>
         <button type = "submit">Save</button>
         <button type = "button" onClick = {()=>this.props.onCancel()} >Cancel</button>

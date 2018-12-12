@@ -7,7 +7,7 @@ export default function PostSection(props) {
 
   for(let i = 0; i < props.posts.length; i++){
     posts.push(
-      <Post post={props.posts[i]} />
+      <Post post={props.posts[i]} key = {i} />
     )
   }
   

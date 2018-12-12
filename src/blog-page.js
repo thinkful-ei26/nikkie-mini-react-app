@@ -1,6 +1,7 @@
 import React from 'react';
 import PostSection from './post-section'
 import NewPostForm from './new-post-form'
+import SearchBar from './searchbar'
 
 export default class BlogPage extends React.Component {
     constructor(props) {
@@ -49,12 +50,7 @@ export default class BlogPage extends React.Component {
           return (
             <div className = "blog-page">
               <button onClick = {()=>this.addingPost(true)}>Add A New Post</button>
-              <input 
-                type="text" 
-                placeholder="Search For A Post" 
-                value={this.state.searchTerm}
-                onChange={e=>this.searching(e)}>
-              </input>
+              <SearchBar onChange = {e => this.searching(e)} searchTerm = {this.state.searchTerm}/>
               {/* if(this.state.adding){
                   <NewPostForm onSave ={post=>this.savePost(post)} onCancel={()=>this.addingPost(false)}/>
               } */}

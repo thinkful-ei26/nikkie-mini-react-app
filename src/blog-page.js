@@ -8,12 +8,17 @@ import './blog-page.css'
 
 export default class BlogPage extends React.Component {
     constructor(props) {
+      let timestamp=Date.now(); 
+      timestamp=new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit'}).format(timestamp);
+
         super(props);
 
         this.state={
           posts:[
-            {title: 'Harry Potter', content: 'Great read', category: 'Book', comments: ['Ive read it ten times', 'HAHAHAHA SAME']},
-            {title: 'Handmaids Tale', content: 'Crazy show', category: 'Show', comments: ['Agreed!', 'When is the new season coming out?!']},
+            {title: 'Handmaids Tale', 
+            content: 'Crazy show', 
+            category: 'Show', 
+            comments: [{message:'LOL', time: timestamp},{message: "Right?!", time: timestamp}]},
           ],
           adding: false,
           searchTerm: '',
@@ -74,10 +79,6 @@ export default class BlogPage extends React.Component {
     }
 
     render() {
-      let timestamp=Date.now(); 
-      timestamp=new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit'}).format(timestamp);
-      console.log(timestamp); //use this somehow
-
       let posts=this.state.posts.filter(post=>post.title.toLowerCase().includes(this.state.searchTerm)||post.content.toLowerCase().includes(this.state.searchTerm));
 
       //check if there's a filter category

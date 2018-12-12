@@ -54,7 +54,6 @@ export default class BlogPage extends React.Component {
 
     handleNewComment(newcomment, index){
       //update a specific post's comments by pushing this
-      console.log('IN BLOG PAGE', index, newcomment);
       const currentPost = this.state.posts[index];
       const updatedComments = [...currentPost.comments,newcomment];
       //build a new post object representing the one we want: 
@@ -62,17 +61,18 @@ export default class BlogPage extends React.Component {
       //could have also written newPost.comments = updatedComments
 
       //make a new array of posts which has this one without mutating orig array
-      const newPostsArray = this.state.posts.map((post,i)=>{
-        if(i===index){
-          return newPost;
-        }
-        else{
-          return post;
-        }
+      const newPostsArray = this.state.posts.map((post,i)=>i===index ? newPost : post)
 
-        //use ternary operators 
+      
+
+      this.setState({
+        posts: newPostsArray,
       })
+    }
 
+    handleDeletePost(postIndex){
+      //create a new postsarray without this one, and then set the state to this new one:
+      const newPostsArray = this.state.posts.filter((post,index)=>index!==postIndex);
       this.setState({
         posts: newPostsArray,
       })
@@ -100,7 +100,11 @@ export default class BlogPage extends React.Component {
                 <FilterCategory filterChange={e => this.filterChange(e)}/>              
               </div>
               {newform}
-              <PostSection handleNewComment={(newcomment,index)=>this.handleNewComment(newcomment, index)} posts={posts}/>
+              <PostSection
+                handleDeletePost={(postIndex)=>this.handleDeletePost(postIndex)} 
+                handleNewComment={(newcomment,index)=>this.handleNewComment(newcomment, index)} 
+                posts={posts}
+                />
             </div>
           );
        

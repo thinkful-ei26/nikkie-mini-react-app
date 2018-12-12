@@ -24,6 +24,7 @@ export default class AddComment extends React.Component {
           name="add-comment"
           type="text" 
           placeholder="Enter Your Comment Here" 
+          required
           // value={props.searchTerm}
           ref={input => this.textInput=input}>
         </input>

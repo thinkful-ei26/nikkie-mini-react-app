@@ -3,6 +3,7 @@ import PostSection from './post-section'
 import NewPostForm from './new-post-form'
 import SearchBar from './searchbar'
 import FilterCategory from './filter-category'
+import NavBar from './navbar'
 
 import './blog-page.css'
 
@@ -94,6 +95,7 @@ export default class BlogPage extends React.Component {
       console.log('THE STATE IS NOW', this.state);
           return(
             <div className="blog-page">
+              < NavBar/>
               <div className="actions-header">
                 <button onClick={()=>this.addingPost(true)}>Add A New Post</button>
                 <SearchBar onChange={e => this.searching(e)} searchTerm={this.state.searchTerm}/>

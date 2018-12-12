@@ -3,9 +3,10 @@
   width:200px;
   height:30px;
 }
-
-.add-comment-input:hover, .add-comment-input:active, .add-comment-input:focus{
+ 
+.add-comment-input:focus{
   outline:none;  
+  border:2px solid black;
 } 
 
 .add-comment-form{

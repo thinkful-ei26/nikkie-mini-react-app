@@ -1,0 +1,63 @@
+.collapse{
+  margin:0;
+  padding:10px;
+  text-align: right;
+}
+
+.collapse>a{
+  list-style: none;
+  color: pink;
+  padding: 10px;
+  /* display:block; */
+  text-align: center;
+  margin-left:auto;
+  margin-right:auto;
+  width:100px;
+  display:none;
+}
+
+.collapse a:hover{
+  background-color: beige;
+  cursor:pointer;
+  color:black;
+}
+
+
+nav input {
+  /* The magical checkbox */
+  position: absolute;
+  width: 43px; height: 37px;
+  display: none;
+  opacity: 0;
+}
+
+nav input, #raptor_button {
+  display: block;
+  cursor: pointer;
+  padding: 5px;
+  margin: 12px 0 0 6px;
+}
+
+nav input:checked ~ * {display: block}
+nav img {
+	width: 77px;
+}
+
+#raptor_button div {
+	/* The three lines of the hamburger menu */
+	width: 33px; height: 4px;
+	background: #cdcdcd;
+	border-radius: 3px;
+	margin: 0 0 5px 3px;
+}
+
+@media(min-width:750px){
+  .collapse a{
+    display: inline-block;
+    text-align:right;
+    width: inherit;
+  }
+
+  #raptor_button {display: none;}
+
+}

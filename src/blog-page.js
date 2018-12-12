@@ -38,7 +38,7 @@ export default class BlogPage extends React.Component {
         else{
           return (
             <div className = "blog-page">
-              {/* <PostSection posts={this.state.posts}/> */}
+              <PostSection posts={this.state.posts}/>
               <button onClick = {()=>this.addingPost(true)}>Add A New Post</button>
             </div>
           );

@@ -8,10 +8,7 @@
   list-style: none;
   color: pink;
   padding: 10px;
-  /* display:block; */
-  text-align: center;
-  margin-left:auto;
-  margin-right:auto;
+  text-align: left;
   width:100px;
   display:none;
   text-decoration: none;
@@ -22,7 +19,6 @@
   cursor:pointer;
   color:black;
 }
-
 
 .checkbox {
   /* The magical checkbox */
@@ -78,5 +74,14 @@ input:hover #raptor_button div{
   .filler{
     height:0;
   }
+
+  .checkbox:checked ~ a
+  {
+    display: inline-block;
+    text-align: right;
+    width: inherit;
+  }
+
 }
 
+/* QUESTION:make checkbox uncheck when window size changes */

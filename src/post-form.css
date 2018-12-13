@@ -1,0 +1,26 @@
+.post-form .buttons{
+  width:100px;
+  margin:10px auto;
+}
+
+.post-form input, .post-form select{
+  font-size: 20px;
+  clear:both;
+  display:block;
+  background-color: transparent;
+  padding:10px;
+  margin:10px;
+}
+
+.post-form input{
+  border: none;
+}
+
+.post-form select{
+  border: 2px black solid;
+}
+
+.post-form input:hover, .post-form input:focus{
+  font-style: italic;
+  background-color: beige;
+} 

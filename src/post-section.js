@@ -16,8 +16,8 @@ export default class PostSection extends React.Component {
     this.props.handleEditPost(postIndex)
   }
 
-  handleCancelUpdate(){
-    this.props.handleCancelUpdate();
+  handleCancel(){
+    this.props.handleCancel();
   }
 
   updatePostSubmit(post,index){
@@ -33,7 +33,7 @@ export default class PostSection extends React.Component {
             handleNewComment={(newcomment,index)=>this.handleNewComment(newcomment, index)}
             handleDeletePost={(postIndex)=>this.handleDeletePost(postIndex)}
             handleEditPost={(postIndex)=>this.handleEditPost(postIndex)}
-            handleCancelUpdate={()=>this.handleCancelUpdate()}
+            handleCancel={()=>this.handleCancel()}
             updatePostSubmit={(post,index)=>this.updatePostSubmit(post,index)}
             post={post} 
             editingPostIndex={this.props.editingPostIndex}

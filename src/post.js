@@ -1,6 +1,6 @@
 import React from 'react';
 import CommentSection from './comment-section'
-
+import PostForm from './post-form'
 import './post.css'
 
 export default class Post extends React.Component {
@@ -28,47 +28,25 @@ export default class Post extends React.Component {
     this.props.handleEditPost(this.props.index)
   }
 
-  handleCancelUpdate(){
-    this.props.handleCancelUpdate();
+  handleCancel(){
+    this.props.handleCancel();
   }
 
-  handleSubmit(e){
-    console.log('here in post');
-    e.preventDefault();
-    this.props.updatePostSubmit(this.state, this.props.index);
+  updatePostSubmit(post, index){
+    this.props.updatePostSubmit(post, index);
   }
   
   render(){
     if(this.props.index ===this.props.editingPostIndex){
       return(
         <div className="post" index={this.props.index}>
-        <form onSubmit={e=>this.handleSubmit(e)}>
-          <input 
-            type="text" 
-            value={this.state.title}
-            name="title" 
-            required
-            placeholder="Title" 
-            onChange={e=>this.setState({title:e.target.value})}>
-          </input>
-          <input 
-            type="text" 
-            value={this.state.content}
-            name="content" 
-            required
-            placeholder="content" 
-            onChange={e=>this.setState({content:e.target.value})}>
-          </input>
-          <select onChange={e=>this.setState({category:e.target.value})} required>
-            <option value="" selected disabled>Select A Category</option>
-            <option value="Book">Book</option>
-            <option value="Show">Show</option>
-          </select>
-          <button type="submit">Update</button>
-          <button type="button" onClick={()=>this.handleCancelUpdate()} className="delete-post">Cancel</button>
-          {/* How can I remember which one of these are chosen pn update? */}
-        </form>
-          <CommentSection handleNewComment={newcomment=>this.handleNewComment(newcomment)} comments={this.props.post.comments}/>
+          <PostForm 
+            handleCancel={()=>this.handleCancel()}
+            updatePostSubmit = {(post,index)=>this.updatePostSubmit(post,index)}
+            post={this.props.post}
+            index={this.props.index}
+            />
+          {/* <CommentSection handleNewComment={newcomment=>this.handleNewComment(newcomment)} comments={this.props.post.comments}/> */}
         </div>
       );
     }

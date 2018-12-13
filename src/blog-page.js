@@ -4,6 +4,7 @@ import NewPostForm from './new-post-form'
 import SearchBar from './searchbar'
 import FilterCategory from './filter-category'
 import NavBar from './navbar'
+import PostForm from './post-form'
 
 import './blog-page.css'
 
@@ -35,7 +36,7 @@ export default class BlogPage extends React.Component {
       })
     }
 
-    savePost(post){
+    savePost(post,index){
       this.setState({
         posts: [...this.state.posts, post],
         adding: false,
@@ -89,10 +90,11 @@ export default class BlogPage extends React.Component {
       //or when editing, change how this current post is rendered completely
     }
 
-    handleCancelUpdate(){
+    handleCancel(){
       this.setState({
         editing:false,
         editingPostIndex:"",
+        adding: false,
       })
     }
 
@@ -112,6 +114,7 @@ export default class BlogPage extends React.Component {
         posts: newPostsArray,
         editing:false,
         editingPostIndex:"",
+        adding: false,
       })
     }
 
@@ -126,7 +129,10 @@ export default class BlogPage extends React.Component {
 
       let newform=null;
       if(this.state.adding){
-        newform =<NewPostForm onSave ={post=>this.savePost(post)} onCancel={()=>this.addingPost(false)}/>
+        newform =<PostForm 
+        handleCancel={()=>this.handleCancel()}
+        posts={posts}
+        updatePostSubmit={(post,index)=>this.savePost(post,index)}/>
       }
 
       console.log('THE STATE IS NOW', this.state);
@@ -143,7 +149,7 @@ export default class BlogPage extends React.Component {
                 handleDeletePost={(postIndex)=>this.handleDeletePost(postIndex)}
                 handleEditPost={(postIndex)=>this.handleEditPost(postIndex)}
                 handleNewComment={(newcomment,index)=>this.handleNewComment(newcomment, index)} 
-                handleCancelUpdate={()=>this.handleCancelUpdate()}
+                handleCancel={()=>this.handleCancel()}
                 posts={posts}
                 updatePostSubmit={(post,index)=>this.updatePostSubmit(post,index)}
                 editingPostIndex={this.state.editingPostIndex}

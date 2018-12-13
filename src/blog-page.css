@@ -3,6 +3,6 @@
   margin:auto;
 }
 
-.actions-header > button, input, select{
+.actions-header > button, .actions-header >input,.actions-header > select{
   margin:20px;
 }

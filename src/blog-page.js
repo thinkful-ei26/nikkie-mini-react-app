@@ -24,6 +24,8 @@ export default class BlogPage extends React.Component {
           adding: false,
           searchTerm: '',
           filterCategory: '',
+          editing: false,
+          editingPostIndex: '',
         };
     }
 
@@ -64,8 +66,6 @@ export default class BlogPage extends React.Component {
       //make a new array of posts which has this one without mutating orig array
       const newPostsArray = this.state.posts.map((post,i)=>i===index ? newPost : post)
 
-      
-
       this.setState({
         posts: newPostsArray,
       })
@@ -76,6 +76,42 @@ export default class BlogPage extends React.Component {
       const newPostsArray = this.state.posts.filter((post,index)=>index!==postIndex);
       this.setState({
         posts: newPostsArray,
+      })
+    }
+
+    handleEditPost(postIndex){
+      this.setState({
+        editing:true,
+        editingPostIndex: postIndex,
+      })
+      //keep an editing variable. set it to true here. when true, make a modal with this post's current info in it. when submitted, replace the post with this post index with the one submitted.
+
+      //or when editing, change how this current post is rendered completely
+    }
+
+    handleCancelUpdate(){
+      this.setState({
+        editing:false,
+        editingPostIndex:"",
+      })
+    }
+
+    updatePostSubmit(post,index){
+      console.log('Updating post with index', post, index);
+
+      //update a specific post's comments by pushing this
+      const currentPost = this.state.posts[index];
+      //build a new post object representing the one we want: 
+      const updatedPost = Object.assign({}, currentPost, post);
+      //could have also written newPost.comments = updatedComments
+
+      //make a new array of posts which has this one without mutating orig array
+      const newPostsArray = this.state.posts.map((post,i)=>i===index ? updatedPost : post)
+
+      this.setState({
+        posts: newPostsArray,
+        editing:false,
+        editingPostIndex:"",
       })
     }
 
@@ -92,10 +128,11 @@ export default class BlogPage extends React.Component {
       if(this.state.adding){
         newform =<NewPostForm onSave ={post=>this.savePost(post)} onCancel={()=>this.addingPost(false)}/>
       }
+
       console.log('THE STATE IS NOW', this.state);
           return(
             <div className="blog-page">
-              < NavBar/>
+              <NavBar/>
               <div className="actions-header">
                 <button onClick={()=>this.addingPost(true)}>Add A New Post</button>
                 <SearchBar onChange={e => this.searching(e)} searchTerm={this.state.searchTerm}/>
@@ -103,9 +140,13 @@ export default class BlogPage extends React.Component {
               </div>
               {newform}
               <PostSection
-                handleDeletePost={(postIndex)=>this.handleDeletePost(postIndex)} 
+                handleDeletePost={(postIndex)=>this.handleDeletePost(postIndex)}
+                handleEditPost={(postIndex)=>this.handleEditPost(postIndex)}
                 handleNewComment={(newcomment,index)=>this.handleNewComment(newcomment, index)} 
+                handleCancelUpdate={()=>this.handleCancelUpdate()}
                 posts={posts}
+                updatePostSubmit={(post,index)=>this.updatePostSubmit(post,index)}
+                editingPostIndex={this.state.editingPostIndex}
                 />
             </div>
           );

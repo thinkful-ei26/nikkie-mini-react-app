@@ -12,6 +12,19 @@ export default class PostSection extends React.Component {
     this.props.handleDeletePost(postIndex)
   }
 
+  handleEditPost(postIndex){
+    this.props.handleEditPost(postIndex)
+  }
+
+  handleCancelUpdate(){
+    this.props.handleCancelUpdate();
+  }
+
+  updatePostSubmit(post,index){
+    console.log('in post section');
+    this.props.updatePostSubmit(post,index);
+  }
+
   render(){
     return (
       <div className="posts-section">
@@ -19,7 +32,11 @@ export default class PostSection extends React.Component {
           <Post 
             handleNewComment={(newcomment,index)=>this.handleNewComment(newcomment, index)}
             handleDeletePost={(postIndex)=>this.handleDeletePost(postIndex)}
+            handleEditPost={(postIndex)=>this.handleEditPost(postIndex)}
+            handleCancelUpdate={()=>this.handleCancelUpdate()}
+            updatePostSubmit={(post,index)=>this.updatePostSubmit(post,index)}
             post={post} 
+            editingPostIndex={this.props.editingPostIndex}
             key={index} 
             index={index} />)}
       </div>

@@ -7,13 +7,13 @@ export default function NavBarList(props) {
       <div className="collapse">
       <input type="checkbox"></input>
         <div id="raptor_button"><div></div><div></div><div></div></div>
-        <a>
+        <a href="#">
           About
         </a>
-        <a>
+        <a href="#">
           Settings
         </a>
-        <a>
+        <a href="#">
           Profile
         </a>      
       </div>

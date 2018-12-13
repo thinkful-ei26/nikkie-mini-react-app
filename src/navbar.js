@@ -5,6 +5,11 @@ import './navbar.css'
 
 export default class NavBar extends React.Component {
 
+  handleSearchFriend(friend){
+    this.props.handleSearchFriend(friend);
+    console.log('IN NAVBAR')
+  }
+
   constructor(props) {
 
       super(props);
@@ -17,8 +22,10 @@ export default class NavBar extends React.Component {
   render(){
     return (
       <nav className = "navbar">
-        <NavBarList/>
-        {/* <HamburgerIcon/> */}
+        <NavBarList
+          searchFriend={this.props.searchFriend} 
+          handleSearchFriend={friend=>this.handleSearchFriend(friend)}
+        />
       </nav>
     );
   }

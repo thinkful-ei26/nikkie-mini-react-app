@@ -24,7 +24,7 @@
 }
 
 
-nav input {
+.checkbox {
   /* The magical checkbox */
   position: absolute;
   width: 43px; height: 37px;
@@ -32,24 +32,38 @@ nav input {
   opacity: 0;
 }
 
-nav input, #raptor_button {
+.checkbox, #raptor_button {
   display: block;
   cursor: pointer;
   padding: 5px;
-  margin: 12px 0 0 6px;
+  margin: px 0 0 6px;
+  width:50px;
 }
 
-nav input:checked ~ * {display: block}
-nav img {
-	width: 77px;
+.checkbox:checked ~ a
+{
+  display: block
 }
 
 #raptor_button div {
 	/* The three lines of the hamburger menu */
 	width: 33px; height: 4px;
-	background: #cdcdcd;
+	background-color: #cdcdcd;
 	border-radius: 3px;
 	margin: 0 0 5px 3px;
+}
+
+#raptor_button{
+  float:left;
+}
+
+input:hover #raptor_button div{
+	background-color: pink;
+} 
+/* QUESTION: why won't this work */
+
+.filler{
+  height:35px;
 }
 
 @media(min-width:750px){
@@ -59,6 +73,10 @@ nav img {
     width: inherit;
   }
 
-  #raptor_button {display: none;}
+  #raptor_button, .checkbox {display: none;}
 
+  .filler{
+    height:0;
+  }
 }
+

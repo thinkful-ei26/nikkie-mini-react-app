@@ -1,3 +1,9 @@
+.post-form{
+  width: 80%;
+  margin: auto;
+  background-color: pink;
+}
+
 .post-form .buttons{
   width:100px;
   margin:10px auto;
@@ -24,3 +30,9 @@
   font-style: italic;
   background-color: beige;
 } 
+
+@media(min-width:750px){
+  .post-form{
+    width:500px;
+  }
+}

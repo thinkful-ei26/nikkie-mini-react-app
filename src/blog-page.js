@@ -24,6 +24,7 @@ export default class BlogPage extends React.Component {
           ],
           adding: false,
           searchTerm: '',
+          searchFriend: '',
           filterCategory: '',
           editing: false,
           editingPostIndex: '',
@@ -48,6 +49,14 @@ export default class BlogPage extends React.Component {
         searchTerm: e.target.value.toLowerCase(),
         // state shouldn't change, but what we pass to PostSection should
       })
+    }
+
+    handleSearchFriend(friend){
+      this.setState({
+        searchFriend: friend.toLowerCase(),
+        // state shouldn't change, but what we pass to PostSection should
+      })
+      console.log('IN BLOG')
     }
 
     filterChange(e){
@@ -138,7 +147,10 @@ export default class BlogPage extends React.Component {
       console.log('THE STATE IS NOW', this.state);
           return(
             <div className="blog-page">
-              <NavBar/>
+              <NavBar 
+                searchFriend={this.state.searchFriend} 
+                handleSearchFriend={friend=>this.handleSearchFriend(friend)}
+              />
               <div className="actions-header">
                 <button onClick={()=>this.addingPost(true)}>Add A New Post</button>
                 <SearchBar onChange={e => this.searching(e)} searchTerm={this.state.searchTerm}/>

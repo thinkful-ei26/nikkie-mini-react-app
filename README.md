@@ -1,3 +1,6 @@
+#Nikkie's Mini React App
+This app allows users to create posts about books or shows, write descriptions, edit or delete the posts, and comment on posts. There's also a useless navbar just for fun! :P
+___
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
